@@ -1,7 +1,7 @@
 package com.forezp.springbootfirstapplication.model;
 
 import java.io.Serializable;
-
+/*存入redis需要序列化*/
 public class Driver implements Serializable {
     private String id;
 
