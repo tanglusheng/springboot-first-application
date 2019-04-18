@@ -67,7 +67,7 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 		</dependency>
-		<!-- spring-boot-devtools依赖包 -->
+		<!-- spring-boot-devtools依赖包,热部署插件,需要点击Build下项目 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
