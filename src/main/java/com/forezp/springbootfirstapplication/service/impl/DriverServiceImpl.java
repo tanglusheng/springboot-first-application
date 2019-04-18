@@ -38,10 +38,13 @@ public class DriverServiceImpl implements DriverService{
                 drivers=(List<Driver>)redisTemplate.opsForValue().get("allDrivers");
                 if(null==drivers){
                     drivers=driverMapper.getAllDriver();
+                    System.out.println("查询数据库...");
                     //这样存入redis中的key也是序列化的key，不好读，可以给它设置序列化类
                     redisTemplate.opsForValue().set("allDrivers",drivers);
                 }
             }
+        }else{
+            System.out.println("查询缓存...");
         }
         return drivers;
     }
