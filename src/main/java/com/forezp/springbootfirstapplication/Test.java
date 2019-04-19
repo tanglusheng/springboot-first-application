@@ -19,28 +19,30 @@ public class Test {
 //                System.out.println("已写入:"+i);
 //            i++;
 //        }
-        long start = System.currentTimeMillis();
-        Map<Character,Integer> countMap=new HashMap<>();
-        List<String> lines=FileUtils.readLines(new File("D:/3.txt"),Charset.defaultCharset());
-        for(String line:lines){
-            char[] chars = line.toCharArray();
-            for(char c:chars) {
-                if (countMap.containsKey(c)){
-                    countMap.put(c,countMap.get(c)+1);
-                }else{
-                    countMap.put(c,1);
-                }
-            }
-        }
-        long count=0;
-        Set<Map.Entry<Character, Integer>> entries = countMap.entrySet();
-        Iterator<Map.Entry<Character, Integer>> iterator = entries.iterator();
-        while(iterator.hasNext()){
-            Map.Entry<Character, Integer> next = iterator.next();
-            System.out.println(next.getKey()+":"+next.getValue());
-            count+=next.getValue();
-        }
-        long end = System.currentTimeMillis();
-        System.out.println("分析花费了:"+(end-start)+"毫秒!共"+count+"个字符");
+        int b=-128;
+        System.out.println(Integer.toBinaryString(b));
+//        long start = System.currentTimeMillis();
+//        Map<Character,Integer> countMap=new HashMap<>();
+//        List<String> lines=FileUtils.readLines(new File("D:/3.txt"),Charset.defaultCharset());
+//        for(String line:lines){
+//            char[] chars = line.toCharArray();
+//            for(char c:chars) {
+//                if (countMap.containsKey(c)){
+//                    countMap.put(c,countMap.get(c)+1);
+//                }else{
+//                    countMap.put(c,1);
+//                }
+//            }
+//        }
+//        long count=0;
+//        Set<Map.Entry<Character, Integer>> entries = countMap.entrySet();
+//        Iterator<Map.Entry<Character, Integer>> iterator = entries.iterator();
+//        while(iterator.hasNext()){
+//            Map.Entry<Character, Integer> next = iterator.next();
+//            System.out.println(next.getKey()+":"+next.getValue());
+//            count+=next.getValue();
+//        }
+//        long end = System.currentTimeMillis();
+//        System.out.println("分析花费了:"+(end-start)+"毫秒!共"+count+"个字符");
     }
 }
