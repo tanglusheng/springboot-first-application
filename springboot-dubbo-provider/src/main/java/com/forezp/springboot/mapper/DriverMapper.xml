@@ -25,7 +25,7 @@
     delete from driver
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" parameterType="com.forezp.springbootfirstapplication.model.Driver">
+  <insert id="insert" parameterType="com.forezp.springboot.model.Driver">
     insert into driver (id, name)
     values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR})
   </insert>

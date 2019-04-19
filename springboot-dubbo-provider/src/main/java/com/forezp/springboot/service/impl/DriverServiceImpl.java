@@ -7,6 +7,8 @@ import com.forezp.springboot.service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+
+
 @Component
 @Service(version = "1.0.0",timeout = 10000)
 public class DriverServiceImpl implements DriverService {
