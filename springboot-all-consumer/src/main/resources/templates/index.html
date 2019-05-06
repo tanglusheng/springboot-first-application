@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <caption><a class="btn btn-primary" th:href="@{|/user/toAddUser|}">ADD</a></caption>
+                <thead>
+                    <tr>
+                        <th>INDEX</th>
+                        <th>NICK</th>
+                        <th>PHONE</th>
+                        <th>EMAIL</th>
+                        <th>ADDRESS</th>
+                        <th>OPTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user:${userList}">
+                        <td th:text="${userStat.count}"></td>
+                        <td th:text="${user.nick}"></td>
+                        <td th:text="${user.phone}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td th:text="${user.address}"></td>
+                        <td>
+                            <a class="btn btn-success" th:href="@{|/user/toUpdateUser?id=${user.id}|}">UPDATE</a>
+                            <a class="btn btn-warning" th:onclick="'javascript:showDeleteModal(\''+${user.id}+'\')'">DELETE</a><!--th:href="@{|/delete?id=${user.id}|}"-->
+                        </td>
+                    </tr>
+                    <tr style="text-align: center;">
+                        <td colspan="6">
+                            <ul class="pager">
+                                <span th:if="${curPage<=1}">
+                                    <li class="disabled"><a href="#">首页</a></li>
+                                    <li class="disabled"><a href="#">上一页</a></li>
+                                </span>
+                                <span th:if="${curPage>1}">
+                                    <li><a th:href="@{/index}">首页</a></li>
+                                    <li><a th:href="@{|/index?curPage=${curPage-1}|}">上一页</a></li>
+                                </span>
+                                <span th:if="${curPage==totalPages}">
+                                    <li class="disabled"><a href="#">下一页</a></li>
+                                    <li class="disabled"><a href="#">尾页</a></li>
+                                </span>
+                                <span th:if="${curPage<totalPages}">
+                                    <li><a th:href="@{|/index?curPage=${curPage+1}|}">下一页</a></li>
+                                    <li><a th:href="@{|/index?curPage=${totalPages}|}">尾页</a></li>
+                                </span>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="modal fade" id="delcfmOverhaul">
+                <div class="modal-dialog">
+                    <div class="modal-content message_align">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"
+                                    aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <h4 class="modal-title">提示</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input type="hidden" id="deleteHaulId" />
+                            <p>您确认要删除该条信息吗？</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default"
+                                    data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary"
+                                    id="deleteHaulBtn">确认</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function showDeleteModal(id) {
+        $("#deleteHaulId").val(id);
+        $("#delcfmOverhaul").modal({
+            backdrop : 'static',
+            keyboard : false
+        });
+    }
+</script>
+<script>
+    $(function() {
+        $("#deleteHaulBtn").click(function() {
+            window.location.href="/delete?id="+$("#deleteHaulId").val();
+        });
+    });
+</script>
+</body>
+</html>
